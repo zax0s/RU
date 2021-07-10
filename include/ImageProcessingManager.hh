@@ -13,8 +13,6 @@
 #include "vImageProcess.hh"
 using namespace std;
 
-
-
 /*!
   \class   ImageProcessingManager
   \brief   This class holds all the generic functions to manage image processing modules/operations
@@ -54,7 +52,7 @@ class ImageProcessingManager
   private:
   ImageSpace* mp_ImageSpace;                 /*!< Pointer to the ImageSpace object (already in use) */
   // TODO: Change to allow for multiple ImageProcessing objects to be applied;
-  //vImageProcess* mp_ImageProcess;            /*!< ImageProcess model object (virtual) */
+  vImageProcess* mp_ImageProcess;            /*!< ImageProcess model object (virtual) */
   bool m_useProcessing;                      /*!< Flag indicating that use of a dynamic model is enabled or not*/
 
 };

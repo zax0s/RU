@@ -6,11 +6,11 @@
 
 #include "../include/ImageProcessingManager.hh"
 #include "../include/vImageProcess.hh"
-//#include "../include/iImageProcessErode.hh"
+#include "../include/iImageProcessErode.hh"
 ImageProcessingManager::ImageProcessingManager()
 {
   m_useProcessing=false;
-  //mp_ImageProcess=NULL;
+  mp_ImageProcess=NULL;
   mp_ImageSpace=NULL;
 }
 ImageProcessingManager::~ImageProcessingManager()
@@ -68,7 +68,8 @@ int ImageProcessingManager::Initialize(const string& image_processing_options)
     cout << "ImageProcessingManager::Initialize() -> Rotate process is not implemented yet !" << endl;}
     else if (processID == "Erode"){
     cout << "ImageProcessingManager::Initialize() -> Erode process selected !" << endl;
-    vImageProcess* p_ImageProcess = (iImageProcessErode) new vImageProcess();
+    mp_ImageProcess = new iImageProcessErode();
+    mp_ImageProcess->InitializeSpecific();
     }
     else if (processID == "Dilate"){
     cout << "ImageProcessingManager::Initialize() -> Dilate process is not implemented yet !" << endl;}
