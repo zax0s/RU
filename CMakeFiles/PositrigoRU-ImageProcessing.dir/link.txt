@@ -1,1 +1,0 @@
-/usr/bin/c++     CMakeFiles/PositrigoRU-ImageProcessing.dir/toolkits/PositrigoRU-ImageProcessing.cc.o  -o PositrigoRU-ImageProcessing 

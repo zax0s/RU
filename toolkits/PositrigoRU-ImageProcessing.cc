@@ -5,7 +5,7 @@
 */
 
 #include <iostream>
-//#include "../include/ImageSpace.hh"
+#include "../include/ImageSpace.hh"
 using namespace std;
 
 /*!
@@ -91,6 +91,17 @@ int main(int argc, char** argv)
       i++;
     }
 
+    else if (option=="-mask")
+    {
+      if (i>=argc-1)
+      {
+        cout << "***** PositrigoRU-ImageProcessing() -> Argument missing for option: " << option << endl;
+        exit(EXIT_FAILURE);
+      }
+      path_to_mask_filename = (string)argv[i+1];
+      i++;
+    }
+
     // --------------------------------------------------------------------------------
     // Output image/images
     // --------------------------------------------------------------------------------
@@ -129,7 +140,7 @@ int main(int argc, char** argv)
         cout << "***** PositrigoRU-ImageProcessing() -> Argument missing for option: " << option << endl;
         exit(EXIT_FAILURE);
       }
-      nb_voxX= atoi(argv[i+1]);
+      nb_voxY= atoi(argv[i+1]);
       i++;
     }
 
@@ -170,17 +181,27 @@ int main(int argc, char** argv)
   cout << "  -dimy y              : " << nb_voxY << endl;
   cout << "  -process             : " << process_options << endl;
   cout << "  -mask mask_image.hdr : " << path_to_mask_filename << endl;
+  cout << endl;
   //#endif DEBUG
 
   // ============================================================================================================
   // Allocate and load images ( if provided )
   // ============================================================================================================
-  //ImageSpace* p_ImageSpace = new ImageSpace();
-  /*if (p_ImageSpace->Initialize(nb_voxX,nb_voxY,path_to_image_filename,path_to_mask_filename))
+  ImageSpace* p_ImageSpace = new ImageSpace();
+  if (p_ImageSpace->Initialize(nb_voxX,nb_voxY,path_to_image_filename,path_to_mask_filename))
   {
     cout << "**PositrigoRU-ImageProcessing() -> Something went wrong while initialising ImageSpace " << endl;
     return 1;
-  }*/
+  }
+
+  // For testing copy the input image to the output image
+  p_ImageSpace->CopyInputToOutput();
+
+  // Safe Output Image to provided directory
+  if(!path_dout.empty())
+  {
+    p_ImageSpace->WriteOutput(path_dout);
+  }
 
   return 0;
 }

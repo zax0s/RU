@@ -4,6 +4,9 @@
   \brief    Declaration of class ImageSpace
 */
 
+#ifndef IMAGESPACE_HH
+#define IMAGESPACE_HH 1
+
 #include <iostream>
 using namespace std;
 
@@ -50,7 +53,20 @@ public:
   */
   int Initialize(int dimx, int dimy, const string& path_to_image_filename, const string& path_to_mask_filename);
 
+  /*!
+    \fn      ImageSpace::CopyInputToOutput
+    \brief   Copy the Input Image to the Output
+  */
+  inline void CopyInputToOutput()
+  {
+    for (int v=0; v<m_nbVoxXY; v++) mp_outputImage[v] = mp_image[v];
+  }
 
+  /*!
+    \fn      ImageSpace::WriteOutput
+    \brief   Copy the Input Image to the Output
+  */
+  int WriteOutput(const string& path_to_output, const string& suffix="");
 
   // -------------------------------------------------------------------
   // Data members
@@ -63,3 +79,5 @@ private:
   bool m_loadedMask;                        /*!< Flag indicating if a mask image has been loaded */
 
 };
+
+#endif

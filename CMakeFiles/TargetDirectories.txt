@@ -1,4 +1,0 @@
-/mnt/c/Users/chalampalakis/CLionProjects/PositrigoRU/CMakeFiles/rebuild_cache.dir
-/mnt/c/Users/chalampalakis/CLionProjects/PositrigoRU/CMakeFiles/edit_cache.dir
-/mnt/c/Users/chalampalakis/CLionProjects/PositrigoRU/CMakeFiles/PositrigoRU-ImageProcessing.dir
-/mnt/c/Users/chalampalakis/CLionProjects/PositrigoRU/CMakeFiles/PositrigoRU.dir
