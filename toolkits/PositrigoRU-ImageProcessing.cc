@@ -6,6 +6,7 @@
 
 #include <iostream>
 #include "../include/ImageSpace.hh"
+#include "../include/ImageProcessingManager.hh"
 using namespace std;
 
 /*!
@@ -194,8 +195,20 @@ int main(int argc, char** argv)
     return 1;
   }
 
+  // TODO: Remember to remove this for final testing
   // For testing copy the input image to the output image
   p_ImageSpace->CopyInputToOutput();
+
+  // ============================================================================================================
+  // Initialise Processing manager
+  // ============================================================================================================
+  ImageProcessingManager* p_ImageProcessingManager = new ImageProcessingManager();
+  if (p_ImageProcessingManager->Initialize(process_options))
+  {
+    cout << "**PositrigoRU-ImageProcessing() -> Something went wrong while initialising ImageProcessingManager " << endl;
+    return 1;
+  }
+
 
   // Safe Output Image to provided directory
   if(!path_dout.empty())

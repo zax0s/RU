@@ -1,6 +1,6 @@
 /*!
   \file
-  \ingroup  ImageSpace
+  \ingroup  CoreUtilities
   \brief    Declaration of class ImageSpace
 */
 
@@ -16,7 +16,8 @@ using namespace std;
   \details Image matrices are public and can be directly accessed from each classes. \n
            It also includes many functions for initializating, reseting, or deforming the images. \n
            Mandatory Reconstruction image matrices : \n
-           Image:                  1 pointer: 1: 3D/2D voxels \n
+           WorkingImage:                  1 pointer: 1: 3D/2D voxels \n
+           MaskImage:              1 pointer: 1: 3D/2D voxels \n
            OutputImage:            1 pointer: 1: 3D/2D voxels \n
 */
 class ImageSpace
@@ -34,19 +35,6 @@ class ImageSpace
   */
   ~ImageSpace();
 
-  // -------------------------------------------------------------------
-  // Public member functions
-public:
-
-  // public pointers to allow access to images from other classes
-  float*   mp_image; /*!< Working image in reconstruction and input for processing,
-                              1: 3D/2D voxels */
-
-  float*   mp_outputImage; /*!< Reconstructed image or output from processing,
-                              1: 3D/2D voxels */
-
-  float*   mp_maskImage; /*!< Mask binary image,
-                              1: 3D/2D voxels */
   /*!
     \fn      ImageSpace::Initialise
     \brief   Initilise after construction and perform checks
@@ -63,10 +51,30 @@ public:
   }
 
   /*!
+  \fn      ImageSpace::CopyMaskToOutput
+  \brief   Copy the Mask Image to the Output
+*/
+  inline void CopyMaskToOutput()
+  {
+    for (int v=0; v<m_nbVoxXY; v++) mp_maskImage[v] = mp_image[v];
+  }
+
+  /*!
     \fn      ImageSpace::WriteOutput
     \brief   Copy the Input Image to the Output
   */
   int WriteOutput(const string& path_to_output, const string& suffix="");
+
+
+  // public pointers to allow access to images from other classes
+  float*   mp_image; /*!< Working image in reconstruction and input for processing,
+                              1: 3D/2D voxels */
+
+  float*   mp_outputImage; /*!< Reconstructed image or output from processing,
+                              1: 3D/2D voxels */
+
+  float*   mp_maskImage; /*!< Mask binary image,
+                              1: 3D/2D voxels */
 
   // -------------------------------------------------------------------
   // Data members

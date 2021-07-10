@@ -5,7 +5,8 @@
 */
 
 #include "../include/ImageProcessingManager.hh"
-
+#include "../include/vImageProcess.hh"
+//#include "../include/iImageProcessErode.hh"
 ImageProcessingManager::ImageProcessingManager()
 {
   m_useProcessing=false;
@@ -66,7 +67,9 @@ int ImageProcessingManager::Initialize(const string& image_processing_options)
     else if (processID == "Rotate"){
     cout << "ImageProcessingManager::Initialize() -> Rotate process is not implemented yet !" << endl;}
     else if (processID == "Erode"){
-    cout << "ImageProcessingManager::Initialize() -> Erode process is not implemented yet !" << endl;}
+    cout << "ImageProcessingManager::Initialize() -> Erode process selected !" << endl;
+    vImageProcess* p_ImageProcess = (iImageProcessErode) new vImageProcess();
+    }
     else if (processID == "Dilate"){
     cout << "ImageProcessingManager::Initialize() -> Dilate process is not implemented yet !" << endl;}
     else if (processID == "FindPerimeter"){
@@ -78,3 +81,5 @@ int ImageProcessingManager::Initialize(const string& image_processing_options)
 
   return 0;
 }
+
+
