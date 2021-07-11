@@ -52,11 +52,16 @@ public:
   */
   void ShowHelpModelSpecific();
 
+
   // -----------------------------------------------------------------------------------------
   // Data members
 private:
-  int m_kernelSize;           /*!< Kernel size for erosion */
-
+  int m_kernelSize;           /*!< Kernel size (1dimension of 2D kernel) for erosion */
+  int m_kernelSizeXY;         /*!< Kernel 2D plane size for erosion */
+  int m_nbVoxPadX;            /*!< number of voxels in X direction of padded image */
+  int m_nbVoxPadY;            /*!< number of voxels in Y direction of padded image */
+  float* mp_kernel;           /*!< 2D Kernel (structuring element) for erosion */
+  float* mp_paddedImage;      /*!< 2D padded image to be used during application of erosion */
 
 
 };

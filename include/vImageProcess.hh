@@ -54,7 +54,7 @@ public:
   \param   ap_ImageSpace
   \brief   Set the image space for getting access to input/output images and their dimensions
 */
-  inline void SetImageSpace(ImageSpace *ap_ImageSpace) { mp_ImageSpace = ap_ImageSpace; }
+  inline void SetImageSpace(ImageSpace* ap_ImageSpace) { mp_ImageSpace = ap_ImageSpace; }
 
   /*!
   \fn      vImageProcess::Initialize

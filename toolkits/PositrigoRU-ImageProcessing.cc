@@ -195,14 +195,12 @@ int main(int argc, char** argv)
     return 1;
   }
 
-  // TODO: Remember to remove this for final testing
-  // For testing copy the input image to the output image
-  p_ImageSpace->CopyInputToOutput();
-
   // ============================================================================================================
   // Initialise Processing manager
   // ============================================================================================================
   ImageProcessingManager* p_ImageProcessingManager = new ImageProcessingManager();
+  // Set the Image Space to the manager
+  p_ImageProcessingManager->SetImageSpace(p_ImageSpace);
   if (p_ImageProcessingManager->Initialize(process_options))
   {
     cout << "**PositrigoRU-ImageProcessing() -> Something went wrong while initialising ImageProcessingManager " << endl;

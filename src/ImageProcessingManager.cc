@@ -24,7 +24,6 @@ ImageProcessingManager::~ImageProcessingManager()
 // =====================================================================
 int ImageProcessingManager::Initialize(const string& image_processing_options)
 {
-
   cout << "ImageProcessingManager::Initialize() -> Initialising" << endl;
   // Define position of colon for search within the provided image_processing_options
   size_t colon;

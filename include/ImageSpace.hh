@@ -65,6 +65,30 @@ class ImageSpace
   */
   int WriteOutput(const string& path_to_output, const string& suffix="");
 
+  /*!
+  \fn      public inline ImageSpace::GetNbVoxX()
+  \brief   Get the number of voxels along the X axis
+  \return  m_nbVoxX
+*/
+  inline int GetNbVoxX()
+  {return m_nbVoxX;}
+
+  /*!
+  \fn      public inline ImageSpace::GetNbVoxY()
+  \brief   Get the number of voxels along the Y axis
+  \return  m_nbVoxY
+  */
+    inline int GetNbVoxY()
+    {return m_nbVoxY;}
+
+  /*!
+  \fn      public inline ImageSpace::GetNbVoxX()
+  \brief   Get the number of voxels along the XY plane
+  \return  m_nbVoxXY
+  */
+    inline int GetNbVoxXY()
+    {return m_nbVoxXY;}
+
 
   // public pointers to allow access to images from other classes
   float*   mp_image; /*!< Working image in reconstruction and input for processing,
@@ -76,8 +100,13 @@ class ImageSpace
   float*   mp_maskImage; /*!< Mask binary image,
                               1: 3D/2D voxels */
 
+
+
   // -------------------------------------------------------------------
   // Data members
+public:
+
+
 private:
   int m_nbVoxX;                             /*!< The number of voxels along the X axis */
   int m_nbVoxY;                             /*!< The number of voxels along the Y axis */
