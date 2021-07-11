@@ -63,7 +63,6 @@ int ImageSpace::Initialize(int dimx, int dimy, const string& path_to_image_filen
   // If files provided, use them to read the images to memory
   if (m_loadedImage)
   {
-    cout << "Loading image from file" << endl;
     // Allocate temporary reading buffer
     float* bytes = (float*)malloc(m_nbVoxXY*sizeof(float));
     ifstream afile;
@@ -89,7 +88,6 @@ int ImageSpace::Initialize(int dimx, int dimy, const string& path_to_image_filen
   // If files provided, use them to read the images to memory
   if (m_loadedMask)
   {
-    cout << "Loading image from file" << endl;
     // Allocate temporary reading buffer
     float* bytes = (float*)malloc(m_nbVoxXY*sizeof(float));
     ifstream afile;
@@ -110,6 +108,16 @@ int ImageSpace::Initialize(int dimx, int dimy, const string& path_to_image_filen
   else
   {
     for (int v=0; v<m_nbVoxXY; v++) mp_maskImage[v] = 0.;
+  }
+
+  // Check if mask values are valid (0s and 1s only)
+  for (int v=0; v<m_nbVoxXY; v++)
+  {
+    if ((mp_maskImage[v]>1)|(mp_maskImage[v]<0))
+    {
+      cout <<"***** ImageSpace::ReadImageData() -> Invalid mask value encountered !" << endl;
+      return 1;
+    }
   }
 
 return 0;

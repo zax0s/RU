@@ -56,13 +56,19 @@ int iImageProcessErode::InitializeSpecific(const string& process_options)
 
   if(!process_options.empty())
   {
-    cout << "iImageProcessErode::InitializeSpecific() -> Specific option provided: '" << process_options << "'" << endl;
+    //cout << "iImageProcessErode::InitializeSpecific() -> Specific option provided: '" << process_options << "'" << endl;
     // Set kernel size by user
     m_kernelSize = atoi(process_options.c_str());
   }
   else
   {
     cout << "iImageProcessErode::InitializeSpecific() -> No options provided; Using default settings" << endl;
+  }
+
+  if(m_kernelSize%2==0)
+  {
+    cout << "iImageProcessErode::InitializeSpecific() -> Only odd numbers are valid for the kernel size " << endl;
+    return 1;
   }
 
   return 0;
@@ -77,7 +83,6 @@ int iImageProcessErode::InitializeSpecific(const string& process_options)
 */
 int iImageProcessErode::ApplyProcess()
 {
-  cout << "Using Kernel size" << m_kernelSize << endl;
   // Initialise kernel - In this implementation we assume an isotropic and square kernel of 1s
   m_kernelSizeXY=m_kernelSize*m_kernelSize;
   mp_kernel = new float[m_kernelSizeXY];
@@ -88,7 +93,7 @@ int iImageProcessErode::ApplyProcess()
   m_nbVoxPadY=mp_ImageSpace->GetNbVoxY() + m_kernelSize -1 ;
   mp_paddedImage = new float[m_nbVoxPadX*m_nbVoxPadY];
   // initialise with zero
-  for (int v=0;v<(m_nbVoxPadX*m_nbVoxPadY);v++) mp_paddedImage[v]=1;
+  for (int v=0;v<(m_nbVoxPadX*m_nbVoxPadY);v++) mp_paddedImage[v]=0;
 
   // Set the offsets ( we devide the integer m_kernelSize with 2 to get the offset for the paddded image side )
   int m_offsetY = m_kernelSize / 2;
@@ -108,23 +113,19 @@ int iImageProcessErode::ApplyProcess()
       // Calculate index of padded image space
       int idx_pad = pady*m_nbVoxPadX+padx;
       // Copy the image between the two indexes
-      mp_paddedImage[idx_pad] = mp_ImageSpace->mp_image[idx_orig];
+      mp_paddedImage[idx_pad] = mp_ImageSpace->mp_maskImage[idx_orig];
     }
   }
 
-  // copy input image to output
-  mp_ImageSpace->CopyInputToOutput();
+  // copy input image to output (Necessary as the starting value for the erosion operation bellow)
+  mp_ImageSpace->CopyMaskToOutput();
 
-  cout << " iImageProcessErode::ApplyProcess() -> Applying erosion " << endl;
+  cout << " iImageProcessErode::ApplyProcess() -> Applying erosion using kernel size " << m_kernelSize << endl;
   // Start erosion operation to save to output image
   for (int y=0;y<mp_ImageSpace->GetNbVoxY();y++)
   {
-    // Pad coordinate Y
-    int pady = y + m_offsetY;
     for (int x=0;x<mp_ImageSpace->GetNbVoxX();x++)
     {
-      // Pad coordinate X
-      int padx = x + m_offsetX;
       // Calculate index of original image space
       int idx_orig = y*mp_ImageSpace->GetNbVoxX()+x;
 
@@ -145,8 +146,6 @@ int iImageProcessErode::ApplyProcess()
       }
     }
   }
-
-
 
   return 0;
 }

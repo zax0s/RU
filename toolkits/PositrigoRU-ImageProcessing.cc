@@ -19,15 +19,32 @@ void ShowHelp()
   cout << "Usage:  PositrigoRU-ImageProcessing  -img input_image.hdr -out output_image.hdr -process operationID:processing_options " << endl;
   cout << endl;
   cout << "[Mandatory parameters]:" << endl;
-  cout << "  -img input_image.hdr : Give an input image " << endl;
   cout << "  -dout name           : Give the directory where the output image/images will be written" << endl;
   cout << "  -dimx x              : Give the number of voxels in the 1st dimension [Currently only 2D supported]." << endl;
   cout << "  -dimy y              : Give the number of voxels in the 2nd dimension [Currently only 2D supported]." << endl;
   cout << "  -process             : Give the name of the process to be applied on the input image" << endl;
+  cout << "[Mandatory image input (at least one)]:" << endl;
+  cout << "  -img input_image.hdr : Give an input image " << endl;
+  cout << "  -mask mask_image.hdr : Give an input mask image (float image with 0s and 1s only)" << endl;
   cout << "[Optional parameters]:" << endl;
-  cout << "  -mask mask_image.hdr : Give an input mask image (in binary format)" << endl;
   cout << "  -help-process        : Show the list and description of all implemented processing operations" << endl;
   cout << "  --help,-h,-help      : Print out this help page." << endl;
+  cout << endl;
+}
+
+/*!
+  \fn      ShowHelp()
+  \brief   Display main command line options of image processing toolkit
+*/
+void ShowHelpProccesses()
+{
+  cout << endl;
+  cout << "  The available image processing options are: " << endl;
+  cout << endl;
+  cout << "  Erode (mask only): This is an erosion operation to be applied on the input binary mask.  " << endl;
+  cout << "                     The size of the structuring element (isotropic square kernel) can be  " << endl;
+  cout << "                     set as an option with a collon after the option (ex. -Erode:3).       " << endl;
+  cout << "                     Only odd numbers are valid for the kernel size (default value: 3).    " << endl;
   cout << endl;
 }
 
@@ -56,6 +73,7 @@ int main(int argc, char** argv)
   // String gathering the processing options
   string process_options = "";
 
+
   // Initialization of the voxel dimensions to -1;
   int nb_voxX=-1, nb_voxY=-1;
 
@@ -76,7 +94,12 @@ int main(int argc, char** argv)
       ShowHelp();
       exit(EXIT_SUCCESS);
     }
-
+    // Show specific help for image processes
+    if (option=="-help-process")
+    {
+      ShowHelpProccesses();
+      exit(EXIT_SUCCESS);
+    }
     // --------------------------------------------------------------------------------
     // Input image
     // --------------------------------------------------------------------------------
@@ -185,6 +208,13 @@ int main(int argc, char** argv)
   cout << endl;
   //#endif DEBUG
 
+  // Check if at least one image has been provided
+  if ((path_to_image_filename.empty())&&(path_to_mask_filename.empty()))
+  {
+    cout << "**PositrigoRU-ImageProcessing() -> Provide at least one input image ! " << endl;
+    exit(EXIT_FAILURE);
+  }
+
   // ============================================================================================================
   // Allocate and load images ( if provided )
   // ============================================================================================================
@@ -192,7 +222,7 @@ int main(int argc, char** argv)
   if (p_ImageSpace->Initialize(nb_voxX,nb_voxY,path_to_image_filename,path_to_mask_filename))
   {
     cout << "**PositrigoRU-ImageProcessing() -> Something went wrong while initialising ImageSpace " << endl;
-    return 1;
+    exit(EXIT_FAILURE);
   }
 
   // ============================================================================================================
@@ -204,7 +234,7 @@ int main(int argc, char** argv)
   if (p_ImageProcessingManager->Initialize(process_options))
   {
     cout << "**PositrigoRU-ImageProcessing() -> Something went wrong while initialising ImageProcessingManager " << endl;
-    return 1;
+    exit(EXIT_FAILURE);
   }
 
   // Apply the process (at the moment use default value of 1 iteration)

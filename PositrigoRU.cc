@@ -18,7 +18,6 @@ void ShowHelp()
   cout << endl;
   cout << "Usage:  PositrigoRU  -df file.data  -recon type -it iter  [settings]" << endl;
   cout << endl;
-  cout << "[Mandatory parameters]:" << endl;
   cout << "  --help,-h,-help      : Print out this help page." << endl;
 
 }
@@ -83,6 +82,8 @@ int main(int argc, char** argv)
       exit(EXIT_FAILURE);
     }
   }
+
+  cout << "****** Under Development! Exiting now " << endl;
 
   return 0;
 }

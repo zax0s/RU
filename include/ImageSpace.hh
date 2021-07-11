@@ -56,7 +56,7 @@ class ImageSpace
 */
   inline void CopyMaskToOutput()
   {
-    for (int v=0; v<m_nbVoxXY; v++) mp_maskImage[v] = mp_image[v];
+    for (int v=0; v<m_nbVoxXY; v++) mp_outputImage[v] = mp_maskImage[v];
   }
 
   /*!
