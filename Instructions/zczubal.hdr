@@ -1,0 +1,48 @@
+!INTERFILE
+!name of data file := zczubal.i
+!originating system := HR+
+!PET data type := label
+data format := image
+imagedata byte order := LITTLEENDIAN
+data compression:=none
+slice orientation:= Transverse
+number format := short float
+number of bytes per pixel := 4
+Patient ID := 0
+Patient name := tomos_label_256_float
+number of dimensions := 3
+matrix size [1] := 256
+matrix size [2] := 256
+matrix size [3] := 128
+scaling factor (mm/pixel) [1] := 1.1
+scaling factor (mm/pixel) [2] := 1.1
+scaling factor (mm/pixel) [3] := 1.4
+FOV size (mm) [1] := 281.6
+FOV size (mm) [2] := 281.6
+FOV size (mm) [3] := 2.8
+bed := 0
+
+#define OUTSIDE      0
+#define MOUTHNOSE    1
+#define EYES         2
+#define TRUNC        3
+#define SCALP        4
+#define BONES        5
+#define LCR          6
+#define WHITE        7
+#define CORTEX       8
+#define CEREBELLUM   9
+#define ARTERIAL    10
+#define VENOUS      11
+#define PUTAMEN     12
+#define CAUDATE     13
+#define THALAMUS    14
+#define HIPPOCAMPUS 15
+#define AMYGDALA    16
+#define PALLIDUM    17
+#define PAROTID     18
+#define MUSCLE      19
+
+
+
+
