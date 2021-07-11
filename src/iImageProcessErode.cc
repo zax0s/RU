@@ -112,8 +112,10 @@ int iImageProcessErode::ApplyProcess()
     }
   }
 
-  // Copy input image to output image before applying the kernel
+  // copy input image to output
+  mp_ImageSpace->CopyInputToOutput();
 
+  cout << " iImageProcessErode::ApplyProcess() -> Applying erosion " << endl;
   // Start erosion operation to save to output image
   for (int y=0;y<mp_ImageSpace->GetNbVoxY();y++)
   {
@@ -125,8 +127,6 @@ int iImageProcessErode::ApplyProcess()
       int padx = x + m_offsetX;
       // Calculate index of original image space
       int idx_orig = y*mp_ImageSpace->GetNbVoxX()+x;
-      // Calculate index of padded image space (the central pixel location where the kernel operation will be applied)
-      int idx_pad = pady*m_nbVoxPadX+padx;
 
       // Inner loops on kernel dimensions
       int idx_kernel=0;
@@ -136,17 +136,16 @@ int iImageProcessErode::ApplyProcess()
         int ky_pad = (y + ky) * m_nbVoxPadX;
         for (int kx=0;kx<m_kernelSize;kx++)
         {
-          // Pad X Coordinate for kernel
-          int kx_pad = (x + kx);
+          // index of kernel on padded image
+          int idx_kernel_pad =  ky_pad + (x + kx);
           //Apply contributions
-          mp_ImageSpace->mp_outputImage[idx_orig] += mp_paddedImage[idx_pad] * mp_kernel[idx_kernel];
+          mp_ImageSpace->mp_outputImage[idx_orig] *= mp_paddedImage[idx_kernel_pad] * mp_kernel[idx_kernel];
           idx_kernel++;
         }
       }
     }
   }
 
-  cout << " iImageProcessErode::ApplyProcess() -> Applying erosion " << endl;
 
 
   return 0;
