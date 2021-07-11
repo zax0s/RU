@@ -66,10 +66,20 @@ int ImageProcessingManager::Initialize(const string& image_processing_options)
     cout << "ImageProcessingManager::Initialize() -> Denoise process is not implemented yet !" << endl;}
     else if (processID == "Rotate"){
     cout << "ImageProcessingManager::Initialize() -> Rotate process is not implemented yet !" << endl;}
-    else if (processID == "Erode"){
+    else if (processID == "Erode")
+    {
     cout << "ImageProcessingManager::Initialize() -> Erode process selected !" << endl;
+    // TODO: Find a better way of calling the children, rather than directly in the Manager
+    // Create the relevant object selected by the process option
     mp_ImageProcess = new iImageProcessErode();
-    mp_ImageProcess->InitializeSpecific();
+      // Initialise
+      if (mp_ImageProcess->InitializeSpecific(process_options))
+      {
+        cout << "ImageProcessingManager::Initialize() -> Something went wrong while initialising image process" << endl;
+        return 1;
+      }
+      // Set the Image Space pointer to the created process
+      mp_ImageProcess->SetImageSpace(mp_ImageSpace);
     }
     else if (processID == "Dilate"){
     cout << "ImageProcessingManager::Initialize() -> Dilate process is not implemented yet !" << endl;}
@@ -83,4 +93,20 @@ int ImageProcessingManager::Initialize(const string& image_processing_options)
   return 0;
 }
 
-
+// =====================================================================
+// Execute the processing
+// =====================================================================
+int ImageProcessingManager::Process(int nb_repetitions)
+{
+  // For every repetition, apply the initialised processing on the Working image
+  for (int i=0;i<nb_repetitions;i++)
+  {
+    cout << " ImageProcessingManager::Process() -> Applying image process" << endl;
+    if(mp_ImageProcess->ApplyProcess())
+    {
+      cout << "****** ImageProcessingManager::Process() -> Something went wrong while applying image process" << endl;
+      return 1;
+    }
+  }
+  return 0;
+}

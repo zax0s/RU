@@ -45,7 +45,7 @@ class ImageProcessingManager
     \fn      ImageProcessingManager::RunProcess
     \brief   Run the image process
   */
-  int Process(const string& image_processing_options);
+  int Process(int nb_repetitions);
 
   // -------------------------------------------------------------------
   // Data members

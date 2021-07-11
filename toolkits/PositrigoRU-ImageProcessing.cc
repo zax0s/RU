@@ -209,6 +209,8 @@ int main(int argc, char** argv)
     return 1;
   }
 
+  // Apply the process (at the moment use default value of 1 iteration)
+  p_ImageProcessingManager->Process(1);
 
   // Safe Output Image to provided directory
   if(!path_dout.empty())
