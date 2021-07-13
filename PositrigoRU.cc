@@ -46,7 +46,7 @@ int main(int argc, char** argv)
   //      image before reconstruction. An ImageSpace class will be used for storing all image related data.
 
 
-  //TODO: Develop an ImageProcessingManager. This manager will manage the different image processing components and apply
+  //DONE: Develop an ImageProcessingManager. This manager will manage the different image processing components and apply
   //      them on the requested image.
   //   -- An abstract/virtual image processing component will be defined, to describe the generic functions of a component.
   //   -- Specific image processing components will be then implemented as children classes.

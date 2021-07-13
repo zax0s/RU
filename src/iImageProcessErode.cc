@@ -11,16 +11,18 @@
   \fn vImageProcess
   \brief Constructor of vImageProcess. Simply set all data members to default values.
 */
-iImageProcessErode::iImageProcessErode(){
+iImageProcessErode::iImageProcessErode()
+{
   m_kernelSize=-1;
   m_kernelSizeXY=-1;
   m_nbVoxPadX=-1;
   m_nbVoxPadY=-1;
   mp_kernel=NULL;
 }
-iImageProcessErode::~iImageProcessErode(){
-
-
+iImageProcessErode::~iImageProcessErode()
+{
+  if (mp_paddedImage!=NULL) if (mp_paddedImage) delete (mp_paddedImage);
+  if (mp_kernel!=NULL) if (mp_kernel) delete (mp_kernel);
 }
 
 

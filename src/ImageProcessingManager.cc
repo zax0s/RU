@@ -15,8 +15,7 @@ ImageProcessingManager::ImageProcessingManager()
 }
 ImageProcessingManager::~ImageProcessingManager()
 {
-  // Delete mp_ImageProcess objects
-  //if (mp_ImageProcess) delete mp_ImageProcess;
+  if (mp_ImageProcess!=NULL) if (mp_ImageProcess) delete (mp_ImageProcess);
 }
 
 // =====================================================================
