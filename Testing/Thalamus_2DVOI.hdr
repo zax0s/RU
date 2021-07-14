@@ -1,0 +1,23 @@
+!INTERFILE
+!name of data file := Thalamus_2DVOI.img
+!originating system := HR+
+!PET data type := label
+data format := image
+imagedata byte order := LITTLEENDIAN
+data compression:=none
+slice orientation:= Transverse
+number format := short float
+number of bytes per pixel := 4
+Patient ID := 0
+Patient name := tomos_label_256_float
+number of dimensions := 3
+matrix size [1] := 256
+matrix size [2] := 256
+matrix size [3] := 1
+scaling factor (mm/pixel) [1] := 1.1
+scaling factor (mm/pixel) [2] := 1.1
+scaling factor (mm/pixel) [3] := 1.4
+FOV size (mm) [1] := 281.6
+FOV size (mm) [2] := 281.6
+FOV size (mm) [3] := 2.8
+bed := 0
