@@ -1,6 +1,3 @@
-# RU
-PositrigoRU
-=======
 # Positrigo - Reconstruction Unit
 ## Image processing interface
 
