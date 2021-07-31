@@ -1,4 +1,5 @@
 # PET - Reconstruction Unit
+=======
 ## Image processing interface
 
 This is an interfance to test and develop the image processing operations which form part of the Reconstruction Unit
@@ -7,7 +8,7 @@ This is an interfance to test and develop the image processing operations which 
 - Import an input image (as a float binary file)
 - Import an mask image ( as a float binary file - using only 0s and 1s)
 - Apply an operation on input image or mask image
-- Write result image to file (a float binary file)
+- Write result image to file (a float file)
 
 ## Requirements - Compile
 The code has been developed and tested on unix systems, running Ubuntu 20.04.2 LTS.\
