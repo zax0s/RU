@@ -1,7 +1,7 @@
 /*!
   \file
   \ingroup utilities
-  \brief  This program is used as an interface to the image processing functions of the PositrigoRU main program.
+  \brief  This program is used as an interface to the image processing functions of the PETRU main program.
 */
 
 #include <iostream>
@@ -16,7 +16,7 @@ using namespace std;
 void ShowHelp()
 {
   cout << endl;
-  cout << "Usage:  PositrigoRU-ImageProcessing  -img input_image.hdr -out output_image.hdr -process operationID:processing_options " << endl;
+  cout << "Usage:  PETRU-ImageProcessing  -img input_image.hdr -out output_image.hdr -process operationID:processing_options " << endl;
   cout << endl;
   cout << "[Mandatory parameters]:" << endl;
   cout << "  -dout name           : Give the directory where the output image/images will be written" << endl;
@@ -108,7 +108,7 @@ int main(int argc, char** argv)
     {
       if (i>=argc-1)
       {
-        cout << "***** PositrigoRU-ImageProcessing() -> Argument missing for option: " << option << endl;
+        cout << "***** PETRU-ImageProcessing() -> Argument missing for option: " << option << endl;
         exit(EXIT_FAILURE);
       }
       path_to_image_filename = (string)argv[i+1];
@@ -119,7 +119,7 @@ int main(int argc, char** argv)
     {
       if (i>=argc-1)
       {
-        cout << "***** PositrigoRU-ImageProcessing() -> Argument missing for option: " << option << endl;
+        cout << "***** PETRU-ImageProcessing() -> Argument missing for option: " << option << endl;
         exit(EXIT_FAILURE);
       }
       path_to_mask_filename = (string)argv[i+1];
@@ -135,7 +135,7 @@ int main(int argc, char** argv)
     {
       if (i>=argc-1)
       {
-        cout << "***** PositrigoRU-ImageProcessing() -> Argument missing for option: " << option << endl;
+        cout << "***** PETRU-ImageProcessing() -> Argument missing for option: " << option << endl;
         exit(EXIT_FAILURE);
       }
       path_dout = argv[i+1];
@@ -150,7 +150,7 @@ int main(int argc, char** argv)
     {
       if (i>=argc-1)
       {
-        cout << "***** PositrigoRU-ImageProcessing() -> Argument missing for option: " << option << endl;
+        cout << "***** PETRU-ImageProcessing() -> Argument missing for option: " << option << endl;
         exit(EXIT_FAILURE);
       }
       nb_voxX= atoi(argv[i+1]);
@@ -161,7 +161,7 @@ int main(int argc, char** argv)
     {
       if (i>=argc-1)
       {
-        cout << "***** PositrigoRU-ImageProcessing() -> Argument missing for option: " << option << endl;
+        cout << "***** PETRU-ImageProcessing() -> Argument missing for option: " << option << endl;
         exit(EXIT_FAILURE);
       }
       nb_voxY= atoi(argv[i+1]);
@@ -176,7 +176,7 @@ int main(int argc, char** argv)
     {
       if (i>=argc-1)
       {
-        cout << "***** PositrigoRU-ImageProcessing() -> Argument missing for option: " << option << endl;
+        cout << "***** PETRU-ImageProcessing() -> Argument missing for option: " << option << endl;
         exit(EXIT_FAILURE);
       }
       process_options = (string)argv[i+1];
@@ -189,14 +189,14 @@ int main(int argc, char** argv)
     // --------------------------------------------------------------------------------
     else
     {
-      cout << "***** PositrigoRU-ImageProcessing() -> Unknown option '" << option << "' !" << endl;
+      cout << "***** PETRU-ImageProcessing() -> Unknown option '" << option << "' !" << endl;
       exit(EXIT_FAILURE);
     }
   }
 
   //#ifdef DEBUG
   cout << endl;
-  cout << "Usage:  PositrigoRU-ImageProcessing  -img input_image.hdr -out output_image.hdr -process operationID:processing_options " << endl;
+  cout << "Usage:  PETRU-ImageProcessing  -img input_image.hdr -out output_image.hdr -process operationID:processing_options " << endl;
   cout << endl;
   cout << "Provided input options" << endl;
   cout << "  -img input_image.hdr : "<< path_to_image_filename << endl;
@@ -211,7 +211,7 @@ int main(int argc, char** argv)
   // Check if at least one image has been provided
   if ((path_to_image_filename.empty())&&(path_to_mask_filename.empty()))
   {
-    cout << "**PositrigoRU-ImageProcessing() -> Provide at least one input image ! " << endl;
+    cout << "**PETRU-ImageProcessing() -> Provide at least one input image ! " << endl;
     exit(EXIT_FAILURE);
   }
 
@@ -221,7 +221,7 @@ int main(int argc, char** argv)
   ImageSpace* p_ImageSpace = new ImageSpace();
   if (p_ImageSpace->Initialize(nb_voxX,nb_voxY,path_to_image_filename,path_to_mask_filename))
   {
-    cout << "**PositrigoRU-ImageProcessing() -> Something went wrong while initialising ImageSpace " << endl;
+    cout << "**PETRU-ImageProcessing() -> Something went wrong while initialising ImageSpace " << endl;
     exit(EXIT_FAILURE);
   }
 
@@ -233,7 +233,7 @@ int main(int argc, char** argv)
   p_ImageProcessingManager->SetImageSpace(p_ImageSpace);
   if (p_ImageProcessingManager->Initialize(process_options))
   {
-    cout << "**PositrigoRU-ImageProcessing() -> Something went wrong while initialising ImageProcessingManager " << endl;
+    cout << "**PETRU-ImageProcessing() -> Something went wrong while initialising ImageProcessingManager " << endl;
     exit(EXIT_FAILURE);
   }
 

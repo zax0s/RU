@@ -1,7 +1,7 @@
 /*!
   \file
   \ingroup main_program
-  \brief  PositrigoRU: Command line interface for the Reconstruction Unit of the Positrigo Device \n
+  \brief  PETRU: Command line interface for the Reconstruction Unit of the PET Device \n
           It reads/parses/checks the command-line options, initialize classes with the correct set of input and options, launch and schedule reconstructions.
 */
 
@@ -16,7 +16,7 @@ void ShowHelp()
 {
 
   cout << endl;
-  cout << "Usage:  PositrigoRU  -df file.data  -recon type -it iter  [settings]" << endl;
+  cout << "Usage:  PETRU  -df file.data  -recon type -it iter  [settings]" << endl;
   cout << endl;
   cout << "  --help,-h,-help      : Print out this help page." << endl;
 
@@ -78,7 +78,7 @@ int main(int argc, char** argv)
     // --------------------------------------------------------------------------------
     else
     {
-      cout << "***** PositrigoRU() -> Unknown option '" << option << "' !" << endl;
+      cout << "***** PETRU() -> Unknown option '" << option << "' !" << endl;
       exit(EXIT_FAILURE);
     }
   }

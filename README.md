@@ -1,4 +1,4 @@
-# Positrigo - Reconstruction Unit
+# PET - Reconstruction Unit
 ## Image processing interface
 
 This is an interfance to test and develop the image processing operations which form part of the Reconstruction Unit
@@ -19,26 +19,26 @@ The following 2D images have been created from the brain Zubal phantom [1]
 [1] Zubal, I.G., Harrell, C.R, Smith, E.O, Rattner, Z., Gindi, G. and Hoffer, P.B., Computerized three-dimensional segmented human anatomy, Medical Physics, 21(2):299-302, 1994.
 
 ## Test cases for the erosion process
-The image processing operations can be called using the **PositrigoRU-ImageProcessing** executable.\
+The image processing operations can be called using the **PetRU-ImageProcessing** executable.\
 Some examples on the usage of the erosion process are provided bellow.
 
 ```console
-./PositrigoRU-ImageProcessing -mask Instructions/Cortex_2DVOI.img -dimx 256 -dimy 256 -dout Instructions/Cortex_eroded -process Erode:3
+./PetRU-ImageProcessing -mask Instructions/Cortex_2DVOI.img -dimx 256 -dimy 256 -dout Instructions/Cortex_eroded -process Erode:3
 ```
 ![Screenshot](Instructions/Cortex_example_k3.png)
 
 ```console
-./PositrigoRU-ImageProcessing -mask Instructions/Cortex_2DVOI.img -dimx 256 -dimy 256 -dout Instructions/Cortex_eroded -process Erode:7
+./PetRU-ImageProcessing -mask Instructions/Cortex_2DVOI.img -dimx 256 -dimy 256 -dout Instructions/Cortex_eroded -process Erode:7
 ```
 ![Screenshot](Instructions/Cortex_example_k7.png)
 
 ```console
-./PositrigoRU-ImageProcessing -mask Instructions/Thalamus_2DVOI.img -dimx 256 -dimy 256 -dout Instructions/Thalamus_eroded -process Erode:3
+./PetRU-ImageProcessing -mask Instructions/Thalamus_2DVOI.img -dimx 256 -dimy 256 -dout Instructions/Thalamus_eroded -process Erode:3
 ```
 ![Screenshot](Instructions/Thalamus_example_k3.png)
 
 ```console
-./PositrigoRU-ImageProcessing -mask Instructions/Thalamus_2DVOI.img -dimx 256 -dimy 256 -dout Instructions/Thalamus_eroded -process Erode:7
+./PetRU-ImageProcessing -mask Instructions/Thalamus_2DVOI.img -dimx 256 -dimy 256 -dout Instructions/Thalamus_eroded -process Erode:7
 ```
 ![Screenshot](Instructions/Thalamus_example_k7.png)
 
@@ -51,8 +51,8 @@ Alternatively [Fiji/ImageJ](https://imagej.net/software/fiji) can be used for vi
 
 example commands for these:
 ```console
-./PositrigoRU-ImageProcessing -mask Testing/Cortex_2DVOI.img -dimx 256 -dimy 256 -dout Testing/Cortex_eroded -process Erode:3
-./PositrigoRU-ImageProcessing -mask Testing/Thalamus_2DVOI.img -dimx 256 -dimy 256 -dout Testing/Thalamus_eroded -process Erode:3
+./PetRU-ImageProcessing -mask Testing/Cortex_2DVOI.img -dimx 256 -dimy 256 -dout Testing/Cortex_eroded -process Erode:3
+./PetRU-ImageProcessing -mask Testing/Thalamus_2DVOI.img -dimx 256 -dimy 256 -dout Testing/Thalamus_eroded -process Erode:3
 ```
 
 # Discussion on Assignment questions
