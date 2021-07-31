@@ -1,4 +1,4 @@
-# Positrigo - Reconstruction Unit
+# Reconstruction Unit
 ## Image processing interface
 
 This is an interfance to test and develop the image processing operations which form part of the Reconstruction Unit
